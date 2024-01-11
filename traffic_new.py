@@ -22,7 +22,7 @@ cur_path = os.getcwd()
 
 # Retrieving the images and their labels
 for i in range(classes):
-    path = os.path.join(cur_path, r'C:\Users\ACER\Desktop\Traffic sign classification\archive_project\Train', str(i))
+    path = os.path.join(cur_path,'Train', str(i))
     images = os.listdir(path)
 
     for a in images:
@@ -120,7 +120,7 @@ plt.ylabel('loss')
 plt.legend()
 plt.savefig('loss_plot.png')
 # Testing accuracy on the test dataset
-test_data = pd.read_csv(r'C:\Users\ACER\Desktop\Traffic sign classification\archive_project\Test.csv')
+test_data = pd.read_csv(r'Test.csv')
 
 labels = test_data["ClassId"].values
 imgs = test_data["Path"].values
@@ -128,10 +128,8 @@ imgs = test_data["Path"].values
 data = []
 
 for img in imgs:
-    path1 = 'C:/Users/ACER/Desktop/Traffic sign classification/archive_project/'
-    path_new = os.path.join(path1, img)
     try:
-        image = cv2.imread(path_new)
+        image = cv2.imread(img)
         if image is None:
             print(f"Error loading image: {img}")
             continue
@@ -177,4 +175,4 @@ def prediction_new(file_name):
     sign = classes[predicted_class]
     print(f"Predicted Class: {sign}")
 
-prediction_new(r'C:\Users\ACER\Desktop\Traffic sign classification\archive_project\Test\00006.png')
+prediction_new('Test\00006.png')
